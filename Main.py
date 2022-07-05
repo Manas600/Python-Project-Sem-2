@@ -23,3 +23,15 @@ playerImg = pygame.image.load("arcade-game.png")
 playerX=370
 playerY=480
 playerX_change=0
+
+
+
+# Game loop
+running = True
+while running:
+    #RGB colors 
+    screen.fill((10 ,51, 102))
+    screen.blit(background,(0,0))
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
