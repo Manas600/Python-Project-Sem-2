@@ -55,3 +55,16 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RIGHT:
+                player1x_change = 0.5
+                print("Right key is pressed")
+            if event.key == pygame.K_LEFT:
+                player1x_change = -0.5
+                print("Left key is pressed")
+               
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_RIGHT or event.key == pygame.K_LEFT:
+                player1x_change = 0
+                print("Keys have been released")    
