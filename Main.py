@@ -1,6 +1,7 @@
 import pygame
 from pygame import mixer
 import random
+import math
 
 
 pygame.init()
@@ -65,6 +66,13 @@ def fire_missile(x,y):
     missile_state="fire"
     screen.blit(missileImg,(x+16,y+10))
 
+def isCollison(EnemyX,EnemyY,missileX,missileY):
+    distance = math.sqrt((math.pow(EnemyX-missileX,2)) + (math.pow(EnemyY-missileY,2)))
+    if distance < 27:
+        return True
+    else:
+        return False
+
 
 # Game loop
 running = True
@@ -96,6 +104,40 @@ while running:
         playerX = 0
     elif playerX >= 736:
         playerX = 736 
+
+    #Enemy Movement
+    for i in range(num_of_enemies):
+
+        #Game Over 
+            if EnemyY[i] > 440:
+                for j in range(num_of_enemies):
+                    EnemyY[j] = 2000
+               
+                break
+            
+            EnemyX[i] += EnemyX_change[i]
+            if EnemyX[i] <= 0:
+                EnemyX_change[i] = 0.3
+                EnemyY[i] += EnemyY_change[i]
+            elif EnemyX[i] >= 736:
+                EnemyX_change[i] = -0.3
+                EnemyY[i] += EnemyY_change[i]
+
+
+
+
+        #Collision
+            Collision = isCollison(EnemyX[i],EnemyY[i],missileX,missileY)
+            if Collision:
+                Explosion_sound = mixer.Sound('explosion.wav')
+                Explosion_sound.play()
+                missileY = 480
+                missile_state = "Ready"
+                
+                EnemyX[i] = random.randint(0,735)
+                EnemyY[i] = random.randint(50,150)
+
+                Enemy(EnemyX[i],EnemyY[i],i)
 
     #missile movement
     if missileY<=0:
