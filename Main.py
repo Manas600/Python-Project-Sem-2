@@ -38,12 +38,26 @@ for i in range(num_of_enemies) :
     EnemyX_change.append(1)
     EnemyY_change.append(40)
 
+#ready-you can't see the missile on screen
+#fire-the missile is currently moving
+#missile
+missileImg = pygame.image.load("missile.png")
+missileX=0
+missileY=480
+missileX_change=0
+missileY_change=5
+missile_state="ready"
+
 def player(x,y):
     screen.blit(playerImg,(x,y))
 
 def Enemy(x,y,i):
     screen.blit(EnemyImg[i],(x,y))
 
+def fire_missile(x,y):
+    global missile_state
+    missile_state="fire"
+    screen.blit(missileImg,(x+16,y+10))
 
 
 # Game loop
