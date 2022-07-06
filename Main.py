@@ -199,7 +199,7 @@ while running:
 
 
 
-player(playerX, playerY)
-show_score(textX, textY)
+    player(playerX, playerY)
+    show_score(textX, textY)
 
-pygame.display.update()                
+    pygame.display.update()                
