@@ -1,4 +1,5 @@
 import pygame
+from pygame import mixer
 import random
 
 
@@ -10,6 +11,11 @@ screen = pygame.display.set_mode((800,600))
 
 # Background
 background = pygame.image.load('background.png')
+
+# Sound
+mixer.music.load("TakeOnMe.wav")
+mixer.music.play(-1)
+
 
 
 
@@ -82,3 +88,40 @@ while running:
             if event.key == pygame.K_RIGHT or event.key == pygame.K_LEFT:
                 player1x_change = 0
                 print("Keys have been released")    
+
+    # Player movement
+    playerX += playerX_change
+
+    if playerX <= 0:
+        playerX = 0
+    elif playerX >= 736:
+        playerX = 736 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pygame.display.update()                
