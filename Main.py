@@ -105,15 +105,22 @@ while running:
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT:
-                player1x_change = 0.5
+                playerX_change = 0.5
                 print("Right key is pressed")
             if event.key == pygame.K_LEFT:
-                player1x_change = -0.5
+                playerX_change = -0.5
                 print("Left key is pressed")
+            if event.key == pygame.K_SPACE:
+                if missile_state is "ready":
+                    missileSound = mixer.Sound("Blast Sound Effect.wav")
+                    missileSound.play()
+                    # Get the current x cordinate of the spaceship
+                    missileX = playerX
+                    fire_missile(missileX, missileY)   
                
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_RIGHT or event.key == pygame.K_LEFT:
-                player1x_change = 0
+                playerX_change = 0
                 print("Keys have been released")    
 
     # Player movement
@@ -192,6 +199,7 @@ while running:
 
 
 
-
+player(playerX, playerY)
+show_score(textX, textY)
 
 pygame.display.update()                
