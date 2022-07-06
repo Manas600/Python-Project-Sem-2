@@ -135,71 +135,46 @@ while running:
     for i in range(num_of_enemies):
 
         #Game Over 
-            if EnemyY[i] > 440:
-                for j in range(num_of_enemies):
-                    EnemyY[j] = 2000
-                game_over_text()
-                break
+        if EnemyY[i] > 440:
+            for j in range(num_of_enemies):
+                EnemyY[j] = 2000
+            game_over_text()
+            break
             
-            EnemyX[i] += EnemyX_change[i]
-            if EnemyX[i] <= 0:
-                EnemyX_change[i] = 0.3
-                EnemyY[i] += EnemyY_change[i]
-            elif EnemyX[i] >= 736:
-                EnemyX_change[i] = -0.3
-                EnemyY[i] += EnemyY_change[i]
+        EnemyX[i] += EnemyX_change[i]
+        if EnemyX[i] <= 0:
+            EnemyX_change[i] = 0.3
+            EnemyY[i] += EnemyY_change[i]
+        elif EnemyX[i] >= 736:
+            EnemyX_change[i] = -0.3
+            EnemyY[i] += EnemyY_change[i]
 
 
 
 
         #Collision
-            Collision = isCollison(EnemyX[i],EnemyY[i],missileX,missileY)
-            if Collision:
-                Explosion_sound = mixer.Sound('explosion.wav')
-                Explosion_sound.play()
-                missileY = 480
-                missile_state = "Ready"
-                score_value+=1
-                EnemyX[i] = random.randint(0,735)
-                EnemyY[i] = random.randint(50,150)
+        Collision = isCollison(EnemyX[i],EnemyY[i],missileX,missileY)
+        if Collision:
+            Explosion_sound = mixer.Sound('explosion.wav')
+            Explosion_sound.play()
+            missileY = 480
+            missile_state = "Ready"
+            score_value+=1
+            EnemyX[i] = random.randint(0,735)
+            EnemyY[i] = random.randint(50,150)
 
-                Enemy(EnemyX[i],EnemyY[i],i)
+            Enemy(EnemyX[i],EnemyY[i],i)
 
     #missile movement
     if missileY<=0:
-        missileY=480
-        missile_state="ready"
+         missileY=480
+         missile_state="ready"
     if missile_state is "fire":
         fire_missile(missileX,missileY)
         missileY-=missileY_change
 
 
-  
+    player(playerX, playerY)
+    show_score(textX, textY)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-player(playerX, playerY)
-show_score(textX, textY)
-
-pygame.display.update()                
+    pygame.display.update()                  
