@@ -92,6 +92,17 @@ while running:
     # Player movement
     playerX += playerX_change
 
+
+     #missile movement
+    if missileY<=0:
+        missileY=480
+        missile_state="ready"
+    if missile_state is "fire":
+        fire_missile(missileX,missileY)
+        missileY-=missileY_change
+
+
+
     if playerX <= 0:
         playerX = 0
     elif playerX >= 736:
