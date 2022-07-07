@@ -11,7 +11,7 @@ pygame.init()
 screen = pygame.display.set_mode((800,600))
 
 # Background
-background = pygame.image.load('background.png')
+background = pygame.image.load('galaxy.jpg')
 
 # Sound
 mixer.music.load("TakeOnMe.wav")
@@ -52,7 +52,7 @@ missileImg = pygame.image.load("missile.png")
 missileX=0
 missileY=480
 missileX_change=0
-missileY_change=1
+missileY_change=3
 missile_state="Ready"
 
 #score
