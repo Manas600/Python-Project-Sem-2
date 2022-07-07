@@ -52,7 +52,7 @@ missileImg = pygame.image.load("missile.png")
 missileX=0
 missileY=480
 missileX_change=0
-missileY_change=1
+missileY_change=3
 missile_state="Ready"
 
 #score
