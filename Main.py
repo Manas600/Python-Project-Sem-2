@@ -42,7 +42,7 @@ for i in range(num_of_enemies) :
     EnemyImg.append(pygame.image.load('ufo.png'))
     EnemyX.append(random.randint(0,735))
     EnemyY.append(random.randint(50,150))
-    EnemyX_change.append(0.05)
+    EnemyX_change.append(1)
     EnemyY_change.append(40)
 
 #Ready-you can't see the missile on screen
