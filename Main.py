@@ -37,23 +37,23 @@ EnemyX = []
 EnemyY = []
 EnemyX_change = []
 EnemyY_change = []
-num_of_enemies = 4
+num_of_enemies = 4 
 for i in range(num_of_enemies) :
-    EnemyImg.append(pygame.image.load('Enemy.png'))
+    EnemyImg.append(pygame.image.load('ufo.png'))
     EnemyX.append(random.randint(0,735))
     EnemyY.append(random.randint(50,150))
-    EnemyX_change.append(1)
+    EnemyX_change.append(0.05)
     EnemyY_change.append(40)
 
-#ready-you can't see the missile on screen
+#Ready-you can't see the missile on screen
 #fire-the missile is currently moving
 #missile
 missileImg = pygame.image.load("missile.png")
 missileX=0
 missileY=480
 missileX_change=0
-missileY_change=5
-missile_state="ready"
+missileY_change=1
+missile_state="Ready"
 
 #score
 score_value=0
@@ -106,12 +106,10 @@ while running:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT:
                 playerX_change = 0.5
-                print("Right key is pressed")
             if event.key == pygame.K_LEFT:
                 playerX_change = -0.5
-                print("Left key is pressed")
             if event.key == pygame.K_SPACE:
-                if missile_state is "ready":
+                if missile_state is "Ready":
                     missileSound = mixer.Sound("Blast Sound Effect.wav")
                     missileSound.play()
                     # Get the current x cordinate of the spaceship
@@ -121,7 +119,6 @@ while running:
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_RIGHT or event.key == pygame.K_LEFT:
                 playerX_change = 0
-                print("Keys have been released")    
 
     # Player movement
     playerX += playerX_change
@@ -163,12 +160,12 @@ while running:
             EnemyX[i] = random.randint(0,735)
             EnemyY[i] = random.randint(50,150)
 
-            Enemy(EnemyX[i],EnemyY[i],i)
+        Enemy(EnemyX[i],EnemyY[i],i)
 
     #missile movement
     if missileY<=0:
          missileY=480
-         missile_state="ready"
+         missile_state="Ready"
     if missile_state is "fire":
         fire_missile(missileX,missileY)
         missileY-=missileY_change
